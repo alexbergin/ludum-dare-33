@@ -129,5 +129,7 @@ define [
 				box.geometry.mergeMesh boxes[i]
 				i++
 
+			box.geometry.mergeVertices()
+
 			@.mesh = box
 			@.geometryReady()

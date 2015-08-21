@@ -25,8 +25,6 @@ define [
 			f = @.entity.model.formation
 			c = @.entity.model.center
 
-			console.log @.entity 
-
 			parts = []
 
 			i = 0
@@ -39,5 +37,3 @@ define [
 
 			for part in parts
 				@.body.addShape part.shape , part.offset , part.quaternion
-
-			@.body.computeAABB()

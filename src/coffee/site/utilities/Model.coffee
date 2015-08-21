@@ -72,3 +72,4 @@ define [
 		destroy: ->
 
 			@.entity.root.stage.remove @.mesh
+			@.mesh.geometry.dispose()
