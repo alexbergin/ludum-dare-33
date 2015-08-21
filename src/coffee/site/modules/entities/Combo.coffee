@@ -23,6 +23,7 @@ define [
 			@.model = new Model @
 			@.collision = new Collision @
 
+
 		loop: ->
 
 			@.collision?.loop()

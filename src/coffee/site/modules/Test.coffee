@@ -3,12 +3,14 @@ define [
 	"site/utilities/SubClass"
 	"site/modules/entities/Landscape"
 	"site/modules/entities/Combo"
+	"site/modules/effects/Poof"
 
 ] , (
 
 	SubClass
 	Landscape
 	Combo
+	Poof
 
 ) ->
 
@@ -29,7 +31,7 @@ define [
 			# access the stage + cannon world
 			setInterval =>
 				@.makeCombo()
-			, 500
+			, 350
 
 			# create the first dog
 			@.makeCombo()
@@ -37,8 +39,14 @@ define [
 		makeCombo: ->
 
 			# limit the number of total dogs
-			while @.combos.length >= 3
-				@.combos[ 0 ].destroy()
+			while @.combos.length >= 5
+				combo = @.combos[ 0 ]
+				color = combo.material.color
+				position = combo.model.mesh.position
+				velocity = combo.collision.body.velocity
+
+				new Poof @.root , color , position , velocity
+				combo.destroy()
 				@.combos.shift()
 
 			# create the new dog

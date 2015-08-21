@@ -37,9 +37,8 @@ define [
 
 			# only loop when needed
 			if progress > 0 and @.entity.model.mesh?
-				setTimeout =>
+				requestAnimationFrame =>
 					@.destroy()
-				, 1000 / 60
 
 
 

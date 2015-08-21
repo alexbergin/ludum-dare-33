@@ -65,4 +65,7 @@ define [
 		add: ( obj ) => @.scene.add obj
 
 		# removes an obj + mesh from scene
-		remove: ( obj ) => @.scene.remove obj
+		remove: ( obj ) =>
+			obj.geometry.dispose()
+			obj.material.dispose()
+			@.scene.remove obj

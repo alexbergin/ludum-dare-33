@@ -20,10 +20,11 @@ define [
 				0xf6ccff
 			]
 
+			@.color = colors[ Math.floor( colors.length * Math.random()) ]
 			@.style = new THREE.MeshBasicMaterial
 				shading: THREE.SmoothShading
 				vertexColors: THREE.FaceColors
-				color: colors[ Math.floor( colors.length * Math.random()) ]
+				color: @.color
 				specular: 0xFFFFFF
 				shininess: 0.3
 				transparent: true

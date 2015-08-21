@@ -3,6 +3,7 @@ define [
 	# modules
 	"site/modules/Camera"
 	"site/modules/Light"
+	"site/modules/Particles"
 	"site/modules/Stage"
 	"site/modules/Test"
 	"site/modules/World"
@@ -25,6 +26,7 @@ define [
 	# modules
 	Camera
 	Light
+	Particles
 	Stage
 	Test
 	World
@@ -58,7 +60,9 @@ define [
 
 			@.camera = new Camera @
 			@.light = new Light @
+			@.particles = new Particles @
 
+			# logic?
 			@.test = new Test @
 
 			# start looping
@@ -81,6 +85,7 @@ define [
 					"camera"
 					"stage"
 					"world"
+					"particles"
 					"test"
 				]
 				

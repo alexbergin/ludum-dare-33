@@ -7,3 +7,5 @@ define ->
 			
 			Math.radians = ( n ) -> return n * ( Math.PI / 180 )
 			Math.degrees = ( n ) -> return n * ( 180 / Math.PI )
+			Math.randomBetween = ( min , max ) ->
+				return min + ( Math.random() * ( max - min ))
