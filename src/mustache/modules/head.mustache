@@ -1,0 +1,40 @@
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<title>{{{ head.title }}}</title>
+
+	{{! fix IE console }}
+	<script>
+		if ( typeof window.console == undefined ){ 
+			var props = [ 
+				"assert" , "clear" , "count" , "debug" , "dir" , "dirxml" , "error",
+				"group", "groupCollapsed" , "groupEnd" , "info" , "log" , "markTimeline",
+				"profile", "profileEnd" , "table" , "time" , "timeEnd" , "timeStamp",
+				"timeline", "timelineEnd" , "trace" , "warn"
+			], i = 0;
+
+			window.console = {};
+			while ( i < props.length ){
+				window.console[ props[i] ] = function() {};
+				i++;
+			}
+		};
+	</script>
+
+	<meta property="og:title" content="{{{head.title}}}" />
+	<meta property="og:description" content="{{{head.description}}}" />
+	<meta property="og:image" content="{{{head.url}}}{{{head.image}}}" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="{{{head.url}}}" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:url" content="{{{head.url}}}" />
+	<meta name="twitter:site" content="{{{head.handle}}}" />
+	<meta name="twitter:creator" content="{{{head.handle}}}" />
+	<meta name="twitter:title" content="{{{head.title}}}">
+	<meta name="twitter:description" content="{{{head.description}}}"/>
+	<meta name="twitter:image:src" content="{{{head.url}}}{{{head.image}}}" />
+
+	<link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
