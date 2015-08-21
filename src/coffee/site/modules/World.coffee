@@ -26,7 +26,7 @@ define [
 			if @.w is undefined then @.w = new CANNON.World()
 
 			# create the debug display
-			# @.debug = new THREE.CannonDebugRenderer @.root.stage.scene , @.w
+			@.debug = new THREE.CannonDebugRenderer @.root.stage.scene , @.w
 
 			# preferences
 			@.w.broadphase = new CANNON.NaiveBroadphase()

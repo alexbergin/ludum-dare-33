@@ -2,19 +2,19 @@ define [
 
 	"site/utilities/SubClass"
 	"site/modules/entities/Landscape"
-	"site/modules/entities/HotDog"
+	"site/modules/entities/Combo"
 
 ] , (
 
 	SubClass
 	Landscape
-	HotDog
+	Combo
 
 ) ->
 
 	class Test extends SubClass
 
-		dogs: []
+		combos: []
 
 		init: ->
 
@@ -28,21 +28,21 @@ define [
 			# pass the entity the root context so it can
 			# access the stage + cannon world
 			setInterval =>
-				@.makeDog()
-			, 250
+				@.makeCombo()
+			, 500
 
 			# create the first dog
-			@.makeDog()
+			@.makeCombo()
 
-		makeDog: ->
+		makeCombo: ->
 
 			# limit the number of total dogs
-			while @.dogs.length >= 100
-				@.dogs[ 0 ].destroy()
-				@.dogs.shift()
+			while @.combos.length >= 10
+				@.combos[ 0 ].destroy()
+				@.combos.shift()
 
 			# create the new dog
-			dog = new HotDog @ ,
+			combo = new Combo @ ,
 
 				position:
 					x: 0 , y: 15 , z: 0
@@ -53,10 +53,10 @@ define [
 					z: Math.radians( Math.random() * 360 )
 
 			# store it so we can delete it later
-			@.dogs.push dog
+			@.combos.push combo
 
 		loop: ->
 
 			# update each entity by calling its loop
-			for dog in @.dogs
-				dog.loop()
+			for combo in @.combos
+				combo.loop()

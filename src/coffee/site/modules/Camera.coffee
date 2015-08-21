@@ -18,15 +18,15 @@ define [
 
 		# the camera's target position
 		anchor:
-			x: 9
-			y: 5
-			z: 9
+			x: 14
+			y: 10
+			z: 14
 
 		# the camera's actual position
 		position:
-			x: 9
-			y: 5
-			z: 9
+			x: 14
+			y: 10
+			z: 14
 
 		# camera setup preferences
 		prefs:

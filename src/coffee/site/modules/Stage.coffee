@@ -12,7 +12,7 @@ define [
 
 		# renderer preferences
 		prefs:
-			clearColor: 0xFFFBED
+			clearColor: 0xF7FDFF
 
 		init: ->
 
