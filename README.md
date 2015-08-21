@@ -19,4 +19,4 @@ Mustache and JSON are compiled into HTML, Coffeescript into JavaScript, and Sass
 
 ## Notes
 
-There's a weird thing with CANNONJS wanting to be loaded from `vendor/cannon.js/build/cannon.min.js` when minified that I haven't been able to figure out, so it's included in the build on its own. 
+There's a weird thing with CANNONJS wanting to be loaded from `vendor/cannon.js/build/cannon.min.js` when minified that I haven't been able to figure out, so it's included in the build on its own.
