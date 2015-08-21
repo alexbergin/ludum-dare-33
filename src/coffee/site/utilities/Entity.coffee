@@ -33,7 +33,15 @@ define ->
 					if @.options?[ process ]?[ vertex ]?
 						@[ process ][ vertex ] = @.options[ process ][ vertex ]
 
-		destroy: ->
+		destroy: ( duration = 120 ) ->
 
+			# fade the material opacity out
+			@.material?.destroy duration
+
+			# remove collisions instantly
 			@.collision?.destroy()
-			@.model?.destroy()
+
+			# remove the model once the fade is over
+			setTimeout =>
+				@.model?.destroy()
+			, duration

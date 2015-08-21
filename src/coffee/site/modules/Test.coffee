@@ -37,7 +37,7 @@ define [
 		makeCombo: ->
 
 			# limit the number of total dogs
-			while @.combos.length >= 50
+			while @.combos.length >= 3
 				@.combos[ 0 ].destroy()
 				@.combos.shift()
 
