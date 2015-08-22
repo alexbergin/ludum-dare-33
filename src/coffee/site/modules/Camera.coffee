@@ -18,15 +18,15 @@ define [
 
 		# the camera's target position
 		anchor:
-			x: 14
-			y: 10
-			z: 14
+			x: 0
+			y: 5
+			z: 100
 
 		# the camera's actual position
 		position:
-			x: 14
-			y: 10
-			z: 14
+			x: 0
+			y: 5
+			z: 100
 
 		# camera setup preferences
 		prefs:
@@ -40,7 +40,7 @@ define [
 
 		build: ->
 
-			@.main = new THREE.PerspectiveCamera 75 , @.root.width / @.root.height , @.minDistance , @.maxDistance
+			@.main = new THREE.PerspectiveCamera 40 , @.root.width / @.root.height , @.minDistance , @.maxDistance
 
 		addListeners: ->
 
@@ -87,7 +87,7 @@ define [
 			diff = prop - target
 
 			# ease to its new position 
-			if Math.abs( diff ) > rate / 10000
+			if Math.abs( diff ) > rate / 100
 				prop -= diff * rate
 
 			# don't kill the memory

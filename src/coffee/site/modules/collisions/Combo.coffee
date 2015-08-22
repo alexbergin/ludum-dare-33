@@ -12,9 +12,9 @@ define [
 
 		prefs:
 
-			mass: 4
+			mass: 2
 			angularVelocity: new CANNON.Quaternion 0 , 0 , 0 , 0
-			angularDamping: 0.10
+			angularDamping: 0.01
 			linearDamping: 0.01
 			material:
 				friction: 0.1

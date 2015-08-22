@@ -17,7 +17,7 @@ define [
 			tolerance: 0.001
 			gravity: 
 				x: 0
-				y: -9.81
+				y: -9.81 / 4
 				z: 0
 
 		init: ->

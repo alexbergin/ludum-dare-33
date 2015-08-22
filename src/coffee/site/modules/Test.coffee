@@ -2,21 +2,27 @@ define [
 
 	"site/utilities/SubClass"
 	"site/modules/entities/Landscape"
-	"site/modules/entities/Combo"
+	"site/modules/entities/Monster"
 
 ] , (
 
 	SubClass
 	Landscape
-	Combo
+	Monster
 
 ) ->
 
 	class Test extends SubClass
 
-		combos: []
+		leftA: false
+		rightA: false
+		leftB: false
+		rightB: false
 
 		init: ->
+
+			# listen for input
+			@.addListeners()
 
 			# generate the landscape
 			@.landscape = new Landscape @ ,
@@ -27,37 +33,57 @@ define [
 
 			# pass the entity the root context so it can
 			# access the stage + cannon world
-			setInterval =>
-				@.makeCombo()
-			, 350
-
-			# create the first dog
-			@.makeCombo()
-
-		makeCombo: ->
-
-			# limit the number of total dogs
-			while @.combos.length >= 25
-				combo = @.combos[ 0 ]
-				combo.destroy()
-				@.combos.shift()
-
-			# create the new dog
-			combo = new Combo @ ,
-
+			@.monsterA = new Monster @ , 
 				position:
-					x: 0 , y: 15 , z: 0
-
+					x: -10
+					y: 5
 				rotation:
-					x: Math.radians( Math.random() * 360 )
-					y: Math.radians( Math.random() * 360 )
-					z: Math.radians( Math.random() * 360 )
+					z: Math.radians( Math.random() - 0.5 )
 
-			# store it so we can delete it later
-			@.combos.push combo
+			@.monsterB = new Monster @ , 
+				position:
+					x: 10
+					y: 5
+				rotation:
+					z: Math.radians( Math.random() - 0.5 )
 
 		loop: ->
 
 			# update each entity by calling its loop
-			for combo in @.combos
-				combo.loop()
+			@.monsterA.loop @.leftA , @.rightA
+			@.monsterB.loop @.leftB , @.rightB
+			# @.camera()
+
+		addListeners: ->
+
+			window.addEventListener "keydown" , @.onDown
+			window.addEventListener "keyup" , @.onUp
+
+		onDown: ( e ) =>
+
+			switch e.keyCode
+				when 65 then @.leftA = true
+				when 68 then @.rightA = true
+				when 37 then @.leftB = true
+				when 39 then @.rightB = true
+
+		onUp: ( e ) =>
+
+			switch e.keyCode
+				when 65 then @.leftA = false
+				when 68 then @.rightA = false
+				when 37 then @.leftB = false
+				when 39 then @.rightB = false
+
+		camera: ->
+
+			mAx = @.monsterA.model.mesh.position.x
+			mBx = @.monsterB.model.mesh.position.x
+
+			x = ( mAx + mBx ) / 2
+			distance = Math.abs( mAx - mBx ) * 1.5
+			z = Math.constrain( distance , 60 , 250 )
+
+			@.root.camera.facing.x = x
+			@.root.camera.anchor.x = x
+			@.root.camera.anchor.z = z
