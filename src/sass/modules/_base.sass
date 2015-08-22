@@ -3,7 +3,24 @@ html , body , main , canvas
 	overflow: hidden
 	margin: 0
 	padding: 0
-	height: 100%
-	width: 100%
 	left: 0
 	top: 0
+
+html , body , main
+	height: 100%
+	width: 100%
+
+$scale: 1
+
+canvas
+	@include transform-origin( top , left )
+	@include scale( $scale , $scale )
+	image-rendering: optimizeSpeed
+	image-rendering: -moz-crisp-edges
+	image-rendering: -webkit-optimize-contrast
+	image-rendering: -o-crisp-edges
+	image-rendering: pixelated
+	-ms-interpolation-mode: nearest-neighbor
+	height: 100% / $scale
+	width: 100% / $scale
+

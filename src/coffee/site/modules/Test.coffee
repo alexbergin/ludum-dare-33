@@ -3,14 +3,12 @@ define [
 	"site/utilities/SubClass"
 	"site/modules/entities/Landscape"
 	"site/modules/entities/Combo"
-	"site/modules/effects/Poof"
 
 ] , (
 
 	SubClass
 	Landscape
 	Combo
-	Poof
 
 ) ->
 
@@ -39,13 +37,8 @@ define [
 		makeCombo: ->
 
 			# limit the number of total dogs
-			while @.combos.length >= 5
+			while @.combos.length >= 25
 				combo = @.combos[ 0 ]
-				color = combo.material.color
-				position = combo.model.mesh.position
-				velocity = combo.collision.body.velocity
-
-				new Poof @.root , color , position , velocity
 				combo.destroy()
 				@.combos.shift()
 

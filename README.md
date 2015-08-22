@@ -1,5 +1,5 @@
 # Ludum Dare 33
-### Theme TBA
+### Theme: You Are The Monster
 
 ## Setup
 1. Install `Node`, `Grunt`, and `Bower`.

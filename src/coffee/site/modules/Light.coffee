@@ -12,10 +12,10 @@ define [
 
 		# light options
 		cast: true
-		color: 0xffffff
+		color: 0xFDFFE2
 		background: 0xEDFFFE
 		onlyShadow: false
-		shadowDarkness: 0.1
+		shadowDarkness: 0.05
 		debug: false
 		mapSize: 2048
 

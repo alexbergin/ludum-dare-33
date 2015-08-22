@@ -17,7 +17,7 @@ define [
 
 				mass: @.prefs.mass or 0
 				angularDamping: @.prefs.angularDamping or 0.01
-				angularDamping: @.prefs.linearDamping or 0.01
+				linearDamping: @.prefs.linearDamping or 0.01
 				material: @.prefs.material
 
 			@.setup() 

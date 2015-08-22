@@ -5,8 +5,8 @@ define ->
 		options:
 			scaleMin: 0.2
 			scaleMax: 0.75
-			minVel: -0.15
-			maxVel: 0.15
+			minVel: -0.05
+			maxVel: 0.05
 			lifeMin: 250
 			lifeMax: 500
 			countMin: 30

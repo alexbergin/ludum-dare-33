@@ -14,7 +14,7 @@ define [
 
 			mass: 4
 			angularVelocity: new CANNON.Quaternion 0 , 0 , 0 , 0
-			angularDamping: 0.01
+			angularDamping: 0.10
 			linearDamping: 0.01
 			material:
 				friction: 0.1

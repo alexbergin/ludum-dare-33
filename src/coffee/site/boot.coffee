@@ -62,9 +62,6 @@ define [
 			@.light = new Light @
 			@.particles = new Particles @
 
-			# logic?
-			@.test = new Test @
-
 			# start looping
 			@.loop()
 
@@ -86,7 +83,6 @@ define [
 					"stage"
 					"world"
 					"particles"
-					"test"
 				]
 				
 				for task in tasks

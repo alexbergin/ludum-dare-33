@@ -49,9 +49,12 @@ define [
 
 		onResize: =>
 
+			# scale we're set at
+			scale = 1
+
 			# get the width + height
-			@.root.height = window.innerHeight
-			@.root.width = window.innerWidth
+			@.root.height = window.innerHeight / scale
+			@.root.width = window.innerWidth / scale
 
 			# resize the renderer
 			@.renderer.setSize @.root.width , @.root.height
