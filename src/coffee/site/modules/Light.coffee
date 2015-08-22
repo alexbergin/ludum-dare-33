@@ -58,3 +58,15 @@ define [
 			# position the light source
 			@.light.position.set -30 , 30 , 30
 			@.light.lookAt x: 0 , y: 0 , z: 0
+
+		loop: ->
+
+			camera = @.root.camera.main
+
+			position =
+				x: camera.position.x
+				y: 0
+				z: 0
+
+			@.light.position.set position.x - 30 , 30 , 30
+			@.light.lookAt position

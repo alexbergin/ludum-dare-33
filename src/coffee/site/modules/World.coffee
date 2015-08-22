@@ -13,7 +13,7 @@ define [
 
 		# world preferences
 		preferences:
-			debugging: false
+			debugging: true
 			tolerance: 0.001
 			gravity: 
 				x: 0

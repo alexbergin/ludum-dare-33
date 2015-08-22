@@ -23,8 +23,6 @@ define [
 			@.model = new Model @
 			@.collision = new Collision @
 
-			console.log @
-
 		loop: ( left , right ) ->
 
 			@.left = left
@@ -51,8 +49,6 @@ define [
 
 		applyInput: ->
 
-			if @.left or @.right then console.log "pressing"
-
 			velocity = 0
 			if @.left then velocity += 2
 			if @.right then velocity -= 2
@@ -62,7 +58,7 @@ define [
 			applyAt = new CANNON.Vec3 p.x , p.y - 150 , p.z
 
 			topForce = new CANNON.Vec3 velocity , 0 , 0
-			bottomForce = new CANNON.Vec3 9 * velocity , 0 , 0
+			bottomForce = new CANNON.Vec3 3 * velocity , 0 , 0
 
 			@.collision.body.applyForce topForce , applyAt
 			@.collision.body.applyForce bottomForce , @.collision.body.position

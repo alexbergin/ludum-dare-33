@@ -41,7 +41,7 @@ define [
 		build: ->
 
 			@.main = new THREE.PerspectiveCamera 40 , @.root.width / @.root.height , @.minDistance , @.maxDistance
-
+			
 		addListeners: ->
 
 			# listen for a resize to update the camera
