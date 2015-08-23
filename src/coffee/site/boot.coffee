@@ -5,7 +5,7 @@ define [
 	"site/modules/Light"
 	"site/modules/Particles"
 	"site/modules/Stage"
-	"site/modules/Test"
+	"site/modules/Game"
 	"site/modules/World"
 
 	# utilities
@@ -28,7 +28,7 @@ define [
 	Light
 	Particles
 	Stage
-	Test
+	Game
 	World
 
 	# utilities
@@ -62,7 +62,7 @@ define [
 			@.light = new Light @
 			@.particles = new Particles @
 
-			@.test = new Test @
+			@.game = new Game @
 
 			# start looping
 			@.loop()
@@ -85,8 +85,8 @@ define [
 					"stage"
 					"world"
 					"particles"
-					"test"
 					"light"
+					"game"
 				]
 				
 				for task in tasks

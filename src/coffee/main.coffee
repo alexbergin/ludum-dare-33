@@ -2,7 +2,7 @@ require.config
 	baseUrl: "scripts"
 
 	paths:
-		"CANNON": "vendor/cannon.js/build/cannon.min"
+		"CANNON": "vendor/cannon.js/build/cannon"
 		"CannonDebugRenderer": "vendor/cannon.js/tools/threejs/CannonDebugRenderer"
 		"classlist": "vendor/classlist/classList"
 		"OBJLoader": "vendor/threejs/examples/js/loaders/OBJLoader"
