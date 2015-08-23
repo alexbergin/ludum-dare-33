@@ -23,6 +23,7 @@ define [
 				rotation:
 					x: Math.radians( -90 ) , y: 0 , z: 0
 
+			# make the monster
 			@.monster = new Monster @
 
 		loop: ->

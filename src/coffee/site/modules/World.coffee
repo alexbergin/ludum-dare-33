@@ -13,7 +13,7 @@ define [
 
 		# world preferences
 		preferences:
-			debugging: true
+			debugging: false
 			tolerance: 0.001
 			gravity: 
 				x: 0
@@ -34,7 +34,7 @@ define [
 			g = @.preferences.gravity
 			@.w.gravity.set( g.x , g.y , g.z )
 
-		colliding: ( a , b ) ->
+		colliding: ( a , b ) =>
 
 			# check if these bodies are colliding
 			contacts = @.w.contacts

@@ -50,7 +50,7 @@ define [
 		onResize: =>
 
 			# scale we're set at
-			scale = 1
+			scale = 4
 
 			# get the width + height
 			@.root.height = window.innerHeight / scale

@@ -14,17 +14,14 @@ define [
 
 			mass: 0
 			angularVelocity: 0.0
-			angularDamping: 0.01
-			linearDamping: 0.01
+			angularDamping: 0.0
+			linearDamping: 0.0
 			material:
-				friction: 0.1
+				friction: 0.25
 
 		src: ->
 
-			# gross but needed
-
 			parts = []
-
 			parts.push 
 				shape: new CANNON.Plane()
 

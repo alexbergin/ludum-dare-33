@@ -68,5 +68,5 @@ define [
 				y: 0
 				z: 0
 
-			@.light.position.set position.x - 30 , 30 , 30
+			@.light.position.set -30 , 30 , -10
 			@.light.lookAt position

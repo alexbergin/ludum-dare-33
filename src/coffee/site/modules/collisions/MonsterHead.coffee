@@ -12,12 +12,12 @@ define [
 
 		prefs:
 
-			mass: 4
+			mass: 3
 			angularVelocity: 0.0
-			angularDamping: 0.9999999
-			linearDamping: 0.01
+			angularDamping: 1
+			linearDamping: 0
 			material:
-				friction: 1
+				friction: 0
 
 		src: ->
 

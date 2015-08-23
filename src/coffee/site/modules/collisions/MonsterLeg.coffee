@@ -14,10 +14,10 @@ define [
 
 			mass: 0.25
 			angularVelocity: 0.0
-			angularDamping: 0.5
-			linearDamping: 0.5
+			angularDamping: 0.1
+			linearDamping: 0.1
 			material:
-				friction: 0.5
+				friction: 0.35
 
 		src: ->
 
