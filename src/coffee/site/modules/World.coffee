@@ -29,10 +29,25 @@ define [
 			@.debug = new THREE.CannonDebugRenderer @.root.stage.scene , @.w
 
 			# preferences
-			@.w.broadphase = new CANNON.NaiveBroadphase()
+			@.w.broadphase = new CANNON.NaiveBroadphase @.w
 			@.w.solver.tolerance = @.preferences.tolerance
 			g = @.preferences.gravity
 			@.w.gravity.set( g.x , g.y , g.z )
+
+		colliding: ( a , b ) ->
+
+			# check if these bodies are colliding
+			contacts = @.w.contacts
+			for contact in contacts
+
+				ac = false
+				bc = false
+
+				if contact.bi is a or contact.bj is a then ac = true
+				if contact.bi is b or contact.bj is b then bc = true
+
+				if ac and bc then return true
+			return false
 
 		loop: ( delta ) ->
 

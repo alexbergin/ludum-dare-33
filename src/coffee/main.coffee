@@ -19,4 +19,4 @@ require.config
 			deps: [ "CANNON" , "THREE" ]
 		
 require [ "site/boot" ] , ( App ) -> 
-	new App()
+	window.site = new App()

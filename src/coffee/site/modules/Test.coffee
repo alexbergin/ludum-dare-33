@@ -16,8 +16,10 @@ define [
 
 		leftA: false
 		rightA: false
+		upA: false
 		leftB: false
 		rightB: false
+		upB: false
 
 		init: ->
 
@@ -27,7 +29,7 @@ define [
 			# generate the landscape
 			@.landscape = new Landscape @ ,
 				position:
-					x: 0 , y: -10 , z: 0
+					x: 0 , y: 0 , z: 0
 				rotation:
 					x: Math.radians( -90 ) , y: 0 , z: 0
 
@@ -36,28 +38,28 @@ define [
 			@.monsterA = new Monster @ , 
 				position:
 					x: -15
-					y: 2
+					y: 15
 
 			@.monsterB = new Monster @ , 
 				position:
 					x: 15
-					y: 2
+					y: 15
 
 			# make the monsters bouncy
 			monsterBounce = new CANNON.ContactMaterial(
 				@.monsterA.collision.body.material,
 				@.monsterB.collision.body.material,
-				{ friction: 0.001 , restitution: 0.9 }
+				{ friction: 0.00001 , restitution: 0.15 }
 			)
 			@.root.world.w.addContactMaterial monsterBounce
 
-			@.state()
+			
 
 		loop: ->
 
 			# update each entity by calling its loop
-			@.monsterA.loop @.leftA , @.rightA
-			@.monsterB.loop @.leftB , @.rightB
+			@.monsterA.loop @.leftA , @.rightA , @.upA
+			@.monsterB.loop @.leftB , @.rightB , @.upB
 			@.state()
 			@.camera()
 
@@ -71,16 +73,20 @@ define [
 			switch e.keyCode
 				when 65 then @.leftA = true
 				when 68 then @.rightA = true
+				when 87 then @.upA = true
 				when 37 then @.leftB = true
 				when 39 then @.rightB = true
+				when 38 then @.upB = true
 
 		onUp: ( e ) =>
 
 			switch e.keyCode
 				when 65 then @.leftA = false
 				when 68 then @.rightA = false
+				when 87 then @.upA = false
 				when 37 then @.leftB = false
 				when 39 then @.rightB = false
+				when 38 then @.upB = false
 
 		state: ->
 
@@ -88,6 +94,9 @@ define [
 
 			for monster in monsters
 
+				arr1 = []
+				arr2 = []
+				
 				vertical = monster.model.mesh.position.y
 				rotation = Math.degrees( monster.model.mesh.rotation.z ) + 90
 
@@ -98,7 +107,8 @@ define [
 					rotation += 360
 
 				if rotation > 165 or rotation < 15
-					@.killed monster
+					if @.root.world.colliding monster.collision.body , @.landscape.collision.body
+						@.killed monster
 
 		camera: ->
 
@@ -134,7 +144,7 @@ define [
 
 				monster.collision.body.quaternion.set 0 , 0 , 0 , 1
 
-			@.monsterA.collision.body.position.set -15 , 2 , 0
-			@.monsterB.collision.body.position.set 15 , 2 , 0
+			@.monsterA.collision.body.position.set -15 , 15 , 0
+			@.monsterB.collision.body.position.set 15 , 15 , 0
 
 

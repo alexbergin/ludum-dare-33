@@ -12,12 +12,12 @@ define [
 
 		prefs:
 
-			mass: 2
+			mass: 5
 			angularVelocity: new CANNON.Quaternion 0 , 0 , 0 , 0
-			angularDamping: 0.95
-			linearDamping: 0.01
+			angularDamping: 0.66
+			linearDamping: 0.00
 			material:
-				friction: 0.0001
+				friction: 0.0
 
 		src: ->
 
@@ -34,7 +34,7 @@ define [
 			rotation.setFromEuler euler
 
 			parts.push
-				shape: new CANNON.Cylinder radius , 0 , height - radius , 16
+				shape: new CANNON.Cylinder radius , 0 , height - radius , 4
 				offset: new CANNON.Vec3 0 , -(( height - radius ) / 2.25 ) , 0
 				quaternion: rotation
 

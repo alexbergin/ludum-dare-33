@@ -13,19 +13,19 @@ define [
 		# where the camera is facing
 		facing:
 			x: 0
-			y: -5
+			y: 0
 			z: 0
 
 		# the camera's target position
 		anchor:
 			x: 0
-			y: 5
+			y: 15
 			z: 100
 
 		# the camera's actual position
 		position:
 			x: 0
-			y: 5
+			y: 15
 			z: 100
 
 		# camera setup preferences
@@ -41,7 +41,7 @@ define [
 		build: ->
 
 			@.main = new THREE.PerspectiveCamera 40 , @.root.width / @.root.height , @.minDistance , @.maxDistance
-			
+
 		addListeners: ->
 
 			# listen for a resize to update the camera
