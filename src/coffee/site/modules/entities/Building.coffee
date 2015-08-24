@@ -61,14 +61,21 @@ define [
 
 		canReBuild: ->
 
+			@.totalBroken = 0
 			allBroken = true
 			for floor in @.floors
-				if floor.destroyed isnt true then allBroken = false
+				if floor.destroyed isnt true
+					allBroken = false
+				else
+					@.totalBroken++
 			if allBroken then @.reBuild()
 
 		reBuild: ->
 
-			@.root.root.interface.score++
+			if @.pointDisabled isnt true
+				@.root.root.interface.score++
+			else
+				@.pointDisabled = false
 
 			monster = @.root.root.game.monster
 			moving = monster.head.collision.body.velocity.x
@@ -80,7 +87,7 @@ define [
 			@.prefs( x: x )
 			@.place()
 
-		canDestroy: ( floor ) ->
+		canDestroy: ( floor , i ) ->
 
 			test = @.root.root.world.colliding
 
@@ -105,8 +112,12 @@ define [
 
 			if Math.abs( floor.position.x - monster.head.collision.body.position.x ) > 60
 				floor.onGround = floor.beenTouched = true
+				@.pointDisabled = true
 
-			if floor.onGround and floor.beenTouched and floor.destroyed isnt true
-				new Poof @.root.root , 0x9f9c9a , part.position
-				floor.destroyed = true
-				floor.destroy()
+			if i is 0 and @.totalBroken is 0
+				return
+			else
+				if floor.onGround and floor.beenTouched and floor.destroyed isnt true
+					new Poof @.root.root , 0x9f9c9a , part.position
+					floor.destroyed = true
+					floor.destroy()
