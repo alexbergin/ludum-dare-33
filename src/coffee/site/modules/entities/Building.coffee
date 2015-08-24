@@ -107,7 +107,7 @@ define [
 				if test( bottom , part ) isnt false
 					floor.beenTouched = true
 
-			if floor.position.z > @.startingZ + 0.1 or floor.position.z < @.startingZ - 0.1
+			if floor.position.z > 1.8 or floor.position.z < -1.8
 				floor.beenTouched = true
 
 			if Math.abs( floor.position.x - monster.head.collision.body.position.x ) > 60
