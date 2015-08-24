@@ -8,13 +8,13 @@ define [
 
 ) ->
 
-	class HotDog extends Material
+	class MonsterHead extends Material
 
 		src: =>
 
 			@.style = new THREE.MeshBasicMaterial
 				shading: THREE.SmoothShading
 				vertexColors: THREE.FaceColors
-				color: 0xCD692E
+				color: 0xffffff
 				specular: 0xFFFFFF
 				shininess: 0.3

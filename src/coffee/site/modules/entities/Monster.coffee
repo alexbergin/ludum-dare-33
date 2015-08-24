@@ -2,13 +2,21 @@ define [
 
 	"site/utilities/SubClass"
 	"site/modules/entities/MonsterHead"
-	"site/modules/entities/MonsterLeg"
+	"site/modules/entities/MonsterLegUpper"
+	"site/modules/entities/MonsterLegLower"
+	"site/modules/entities/MonsterEyeWhite"
+	"site/modules/entities/MonsterEyePupil"
+	"site/modules/effects/Poof"
 
 ] , (
 
 	SubClass
 	MonsterHead
-	MonsterLeg
+	MonsterLegUpper
+	MonsterLegLower
+	MonsterEyeWhite
+	MonsterEyePupil
+	Poof
 
 ) ->
 
@@ -59,10 +67,23 @@ define [
 			@.head = new MonsterHead @.root,
 				position: 
 					y: 15
+				shadows:
+					recieves: false
+
+			@.canPoof = true
 
 			@.legs = []
 			i = 0
 			n = 8
+
+			@.eyeWhite = new MonsterEyeWhite @.root ,
+				position: 
+					y: 15
+
+			@.eyePupil = new MonsterEyePupil @.root ,
+				position: 
+					y: 15
+
 			while i < n
 
 				slice = ( 360 / n )
@@ -84,8 +105,8 @@ define [
 						z: z * 12
 
 				leg = 
-					top: new MonsterLeg @.root , top
-					bottom: new MonsterLeg @.root , bottom
+					top: new MonsterLegUpper @.root , top
+					bottom: new MonsterLegLower @.root , bottom
 
 				i++
 
@@ -109,9 +130,9 @@ define [
 
 				options =
 					collideConnected: true
-					pivotA: new CANNON.Vec3 0 , 3.05 , 0
+					pivotA: new CANNON.Vec3 0 , 3.15 , 0
 					axisA:  new CANNON.Vec3 n , 0 , m
-					pivotB: new CANNON.Vec3 x * 3.15 , 0 , z * 3.15
+					pivotB: new CANNON.Vec3 x * 3.15 , -1.25 , z * 3.15
 					axisB:  new CANNON.Vec3 n , 0 , m
 
 				@["thigh#{i}"] = new CANNON.HingeConstraint(
@@ -124,9 +145,9 @@ define [
 
 				options =
 					collideConnected: true
-					pivotA: new CANNON.Vec3( 0 , 3.0 , 0 )
+					pivotA: new CANNON.Vec3( 0 , 3.15 , 0 )
 					axisA:  new CANNON.Vec3( 0 , 1 , 0 )
-					pivotB: new CANNON.Vec3( 0 , -3.0 , 0 )
+					pivotB: new CANNON.Vec3( 0 , -3.15 , 0 )
 					axisB:  new CANNON.Vec3( 0 , 1 , 0 )
 					twistAngle:  Math.radians( 90 )
 					angle:  Math.radians( 5 )
@@ -150,6 +171,7 @@ define [
 		loop: ->
 
 			@.head.loop()
+			@.eyes()
 
 			for leg in @.legs
 				leg.bottom.loop()
@@ -159,18 +181,41 @@ define [
 			@.camera()
 			@.collision()
 
+		eyes: ->
+
+			eyeParts = [ "eyeWhite" , "eyePupil" ]
+			vertices = [ "x" , "y" , "z" ]
+
+			for part in eyeParts
+
+				for vertex in vertices
+					@[part].model.mesh.position[vertex] = @.head.model.mesh.position[vertex]
+					@[part].model.mesh.rotation[vertex] = @.head.model.mesh.rotation[vertex]
+
+				@[part].model.mesh.rotation.y -= Math.radians( 180 )
+				@[part].model.mesh.position.y += 0.5
+
 		collision: ->
 
 			test = @.root.root.world.colliding
 			land = @.root.landscape.collision.body
 			head = @.head.collision.body
 
-			if test( head , land ) then @.reset() 
+			if test( head , land ) isnt false
+
+				if @.canPoof is true
+					new Poof @.root.root , 0x9f9c9a , new CANNON.Vec3 head.position.x , 0 , 0 , @.head.collision.body.velocity
+					@.canPoof = false
+				@.reset()
+
+			else
+
+				@.canPoof = true
 
 		power: ->
 
-			fCodes = [ "p" , "q" ]
-			rCodes = [ "o" , "w" ]
+			fCodes = [ "q" , "p" ]
+			rCodes = [ "w" , "o" ]
 
 			@.head.collision.body.position.z = 0
 			@.head.collision.body.velocity.z = 0
@@ -213,20 +258,24 @@ define [
 
 			camera = @.root.root.camera
 			light = @.root.root.light.light
-			monster = @.head.model.mesh
+			monster = @.head.collision.body
 
 			camera.facing = 
 				x: monster.position.x
 				y: 5
 				z: monster.position.z
 
-			yAngle = monster.rotation.y
+			yAngle = Math.euler( monster.quaternion )
+			yAngle = yAngle.y
 
 			x = monster.position.x + Math.sin( yAngle ) * 20
 			z = monster.position.z + Math.cos( yAngle ) * 20
 
 			camera.anchor.x = x
-			camera.anchor.z = z
+			camera.anchor.z = -z
 
 			@.root.landscape.position.x = x
 			@.root.landscape.position.z = z
+
+			light.position.set( monster.position.x + 30 , monster.position.y + 30 , monster.position.z - 30 ) 
+			light.lookAt monster.position

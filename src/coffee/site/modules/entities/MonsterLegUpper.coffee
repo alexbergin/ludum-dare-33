@@ -1,9 +1,9 @@
 define [
 
 	"site/utilities/Entity"
-	"site/modules/models/HotDog"
-	"site/modules/collisions/HotDog"
-	"site/modules/materials/HotDog"
+	"site/modules/models/MonsterLegUpper"
+	"site/modules/collisions/MonsterLeg"
+	"site/modules/materials/MonsterLeg"
 
 ] , (
 
@@ -14,7 +14,7 @@ define [
 
 ) ->
 
-	class HotDog extends Entity
+	class MonsterLegUpper extends Entity
 
 		init: ->
 

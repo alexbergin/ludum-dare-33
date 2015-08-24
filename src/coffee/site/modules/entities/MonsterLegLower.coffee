@@ -1,9 +1,9 @@
 define [
 
 	"site/utilities/Entity"
-	"site/modules/models/Combo"
-	"site/modules/collisions/Combo"
-	"site/modules/materials/Combo"
+	"site/modules/models/MonsterLegLower"
+	"site/modules/collisions/MonsterLeg"
+	"site/modules/materials/MonsterLeg"
 
 ] , (
 
@@ -14,7 +14,7 @@ define [
 
 ) ->
 
-	class Combo extends Entity
+	class MonsterLegLower extends Entity
 
 		init: ->
 
@@ -22,7 +22,6 @@ define [
 			@.material = new Material @
 			@.model = new Model @
 			@.collision = new Collision @
-
 
 		loop: ->
 

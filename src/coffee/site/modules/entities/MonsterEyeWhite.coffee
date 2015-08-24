@@ -1,8 +1,8 @@
 define [
 
 	"site/utilities/Entity"
-	"site/modules/models/Grid"
-	"site/modules/materials/Grid"
+	"site/modules/models/MonsterEyeWhite"
+	"site/modules/materials/MonsterEyeWhite"
 
 ] , (
 
@@ -12,7 +12,7 @@ define [
 
 ) ->
 
-	class Grid extends Entity
+	class MonsterEyeWhite extends Entity
 
 		init: ->
 

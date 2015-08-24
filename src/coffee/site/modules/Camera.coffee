@@ -20,13 +20,13 @@ define [
 		anchor:
 			x: 0
 			y: 15
-			z: 20
+			z: -20
 
 		# the camera's actual position
 		position:
 			x: 0
 			y: 15
-			z: 20
+			z: -20
 
 		# camera setup preferences
 		prefs:

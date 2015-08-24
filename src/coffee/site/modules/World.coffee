@@ -46,7 +46,7 @@ define [
 				if contact.bi is a or contact.bj is a then ac = true
 				if contact.bi is b or contact.bj is b then bc = true
 
-				if ac and bc then return true
+				if ac and bc then return contact
 			return false
 
 		loop: ( delta ) ->

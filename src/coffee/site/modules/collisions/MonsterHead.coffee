@@ -23,8 +23,11 @@ define [
 
 			parts = []
 
+			q = new Math.quaternion new CANNON.Vec3 Math.radians( 90 ) , 0 , 0
+
 			parts.push 
-				shape: new CANNON.Sphere 3
+				shape: new CANNON.Cylinder 3.3 , 4 , 3.5 , 8
+				quaternion: q
 
 			for part in parts
 				@.body.addShape(

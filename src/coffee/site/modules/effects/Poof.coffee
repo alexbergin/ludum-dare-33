@@ -3,19 +3,19 @@ define ->
 	class Poof
 
 		options:
-			scaleMin: 0.2
-			scaleMax: 0.75
-			minVel: -0.05
-			maxVel: 0.05
-			lifeMin: 250
-			lifeMax: 500
-			countMin: 30
-			countMax: 60
+			scaleMin: 0.75
+			scaleMax: 1.75
+			minVel: -0.075
+			maxVel: 0.075
+			lifeMin: 550
+			lifeMax: 1200
+			countMin: 20
+			countMax: 40
 
 		constructor: ( root , color , position , velocity ) ->
 
-			p = position
-			v = velocity
+			p = position or new CANNON.Vec3 0 , 0 , 0
+			v = velocity or new CANNON.Vec3 0 , 0 , 0
 			o = @.options
 			c = Math.floor( Math.randomBetween( o.countMin , o.countMax ))
 			i = 0
@@ -34,11 +34,11 @@ define ->
 						y: position.y + Math.randomBetween o.minVel , o.maxVel
 						z: position.z + Math.randomBetween o.minVel , o.maxVel
 					velocity: 
-						x: ( v.x * 0.02 ) + 2 * Math.randomBetween o.minVel , o.maxVel
+						x: ( v.x * 0.75 ) + 2 * Math.randomBetween o.minVel , o.maxVel
 						y: ( v.y * 0.02 ) + Math.randomBetween o.minVel , o.maxVel
-						z: ( v.z * 0.02 ) + 2 * Math.randomBetween o.minVel , o.maxVel
+						z: ( v.z * 0.75 ) + 2 * Math.randomBetween o.minVel , o.maxVel
 					gravity:
-						x: 0 , y: 0.01 , z: 0
+						x: 0 , y: 0 , z: 0
 
 				root.particles.create options
 				i++
