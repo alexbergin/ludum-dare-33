@@ -8,24 +8,23 @@ define [
 
 ) ->
 
-	class MonsterLeg extends Collision
+	class BuildingFloor extends Collision
 
 		prefs:
 
-			mass: 0.25
+			mass: 0.6
 			angularVelocity: 0.0
-			angularDamping: 0.0
-			linearDamping: 0.0
+			angularDamping: 0.2
+			linearDamping: 0.2
 			material:
-				friction: 0.35
+				friction: 0.75
 
 		src: ->
 
 			parts = []
 
 			parts.push 
-				shape: new CANNON.Cylinder 0.15 , 0.15 , 6 , 6
-				quaternion: Math.quaternion new THREE.Euler Math.radians( -90 ) , 0 , 0
+				shape: new CANNON.Box new CANNON.Vec3 5 , 1.5 , 5
 
 			for part in parts
 				@.body.addShape(

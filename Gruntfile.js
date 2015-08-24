@@ -73,6 +73,7 @@ module.exports = function( grunt ) {
 				expand: true,
 				cwd: "src/",
 				src: [
+					"fonts/**",
 					"images/**",
 					"mat/**",
 					"obj/**"
@@ -83,6 +84,7 @@ module.exports = function( grunt ) {
 				expand: true,
 				cwd: "app/",
 				src: [
+					"fonts/**",
 					"images/**",
 					"mat/**",
 					"obj/**",

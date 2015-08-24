@@ -164,9 +164,7 @@ define [
 
 		reset: =>
 
-			@.score = Math.abs( @.head.collision.body.position.x )
-			console.log "score: #{@.score}"
-
+			@.root.root.interface.score = 0
 
 		loop: ->
 
@@ -189,11 +187,11 @@ define [
 			for part in eyeParts
 
 				for vertex in vertices
-					@[part].model.mesh.position[vertex] = @.head.model.mesh.position[vertex]
-					@[part].model.mesh.rotation[vertex] = @.head.model.mesh.rotation[vertex]
+					@[part].model.mesh?.position[vertex] = @.head.model.mesh.position[vertex]
+					@[part].model.mesh?.rotation[vertex] = @.head.model.mesh.rotation[vertex]
 
-				@[part].model.mesh.rotation.y -= Math.radians( 180 )
-				@[part].model.mesh.position.y += 0.5
+				@[part].model.mesh?.rotation.y -= Math.radians( 180 )
+				@[part].model.mesh?.position.y += 0.5
 
 		collision: ->
 
@@ -228,10 +226,6 @@ define [
 				joint = @["thigh#{i}"]
 				bottom = @["shin#{i}"]
 
-				if @.log is undefined
-					@.log = true
-					console.log bottom
-
 				forwardPowered = @.motor[fCodes[ code ]]
 				backwardsPowered = @.motor[rCodes[ code ]]
 
@@ -257,8 +251,9 @@ define [
 		camera: ->
 
 			camera = @.root.root.camera
-			light = @.root.root.light.light
+			light = @.root.root.light.spot
 			monster = @.head.collision.body
+			target = @.root.landscape.model?.mesh
 
 			camera.facing = 
 				x: monster.position.x
@@ -268,14 +263,19 @@ define [
 			yAngle = Math.euler( monster.quaternion )
 			yAngle = yAngle.y
 
-			x = monster.position.x + Math.sin( yAngle ) * 20
-			z = monster.position.z + Math.cos( yAngle ) * 20
+			x = monster.position.x + Math.sin( yAngle ) * 30
+			z = monster.position.z + Math.cos( yAngle ) * 30
 
 			camera.anchor.x = x
 			camera.anchor.z = -z
 
-			@.root.landscape.position.x = x
-			@.root.landscape.position.z = z
+			if target isnt undefined
 
-			light.position.set( monster.position.x + 30 , monster.position.y + 30 , monster.position.z - 30 ) 
-			light.lookAt monster.position
+				target.position.x = x
+				target.position.z = z
+
+				light.position.x = target.position.x + 30
+				light.position.y = target.position.y + 30
+				light.position.z = target.position.z - 10
+
+				light.target = target

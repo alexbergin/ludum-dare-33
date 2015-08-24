@@ -2,6 +2,7 @@ define [
 
 	# modules
 	"site/modules/Camera"
+	"site/modules/Interface"
 	"site/modules/Light"
 	"site/modules/Particles"
 	"site/modules/Stage"
@@ -25,6 +26,7 @@ define [
 
 	# modules
 	Camera
+	Interface
 	Light
 	Particles
 	Stage
@@ -59,6 +61,7 @@ define [
 			@.world = new World @
 
 			@.camera = new Camera @
+			@.interface = new Interface @
 			@.light = new Light @
 			@.particles = new Particles @
 
@@ -87,6 +90,7 @@ define [
 					"particles"
 					"light"
 					"game"
+					"interface"
 				]
 				
 				for task in tasks

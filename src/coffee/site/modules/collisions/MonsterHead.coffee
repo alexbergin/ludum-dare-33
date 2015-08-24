@@ -12,7 +12,7 @@ define [
 
 		prefs:
 
-			mass: 3
+			mass: 5
 			angularVelocity: 0.0
 			angularDamping: 1
 			linearDamping: 0

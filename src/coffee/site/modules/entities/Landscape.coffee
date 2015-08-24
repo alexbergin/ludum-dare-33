@@ -16,6 +16,8 @@ define [
 
 	class Landscape extends Entity
 
+		unlocked: true
+
 		init: ->
 
 			# set up properties and pass the context

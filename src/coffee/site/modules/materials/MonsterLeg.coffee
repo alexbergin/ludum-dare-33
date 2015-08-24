@@ -15,6 +15,6 @@ define [
 			@.style = new THREE.MeshBasicMaterial
 				shading: THREE.SmoothShading
 				vertexColors: THREE.FaceColors
-				color: 0xcce7ff
+				color: 0xA8F7D1
 				specular: 0xFFFFFF
 				shininess: 0.3

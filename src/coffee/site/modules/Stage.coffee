@@ -12,7 +12,7 @@ define [
 
 		# renderer preferences
 		prefs:
-			clearColor: 0xF7FDFF
+			clearColor: 0xFFFBBF
 
 		init: ->
 
@@ -50,11 +50,11 @@ define [
 		onResize: =>
 
 			# scale we're set at
-			scale = 4
+			@.root.scale = 4
 
 			# get the width + height
-			@.root.height = window.innerHeight / scale
-			@.root.width = window.innerWidth / scale
+			@.root.height = window.innerHeight / @.root.scale
+			@.root.width = window.innerWidth / @.root.scale
 
 			# resize the renderer
 			@.renderer.setSize @.root.width , @.root.height

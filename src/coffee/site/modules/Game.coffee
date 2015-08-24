@@ -3,12 +3,14 @@ define [
 	"site/utilities/SubClass"
 	"site/modules/entities/Landscape"
 	"site/modules/entities/Monster"
+	"site/modules/entities/Building"
 
 ] , (
 
 	SubClass
 	Landscape
 	Monster
+	Building
 
 ) ->
 
@@ -26,6 +28,9 @@ define [
 			# make the monster
 			@.monster = new Monster @
 
+			@.building = new Building @ ,
+				x: -25
 		loop: ->
 
 			@.monster.loop()
+			@.building.loop()

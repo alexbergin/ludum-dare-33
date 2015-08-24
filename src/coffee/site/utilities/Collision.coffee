@@ -47,7 +47,7 @@ define [
 		loop: ->
 
 			# sync the positioning of the threejs object with the cannon object
-			if @.entity.model.mesh? and @.body?
+			if @.entity.model.mesh? and @.body? and @.unlocked isnt true
 
 				# vectors/props we loop through
 				vectors = [ "position" , "quaternion" ]
