@@ -97,7 +97,7 @@ define [
 			legs = monster.legs
 
 			if test( ground , part ) isnt false
-				floor.onGround = true
+				floor.onGround = true 
 			else
 				if floor.beenTouched isnt true
 					floor.onGround = false
